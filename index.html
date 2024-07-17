@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        document.getElementById('task-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const taskInput = document.getElementById('task').value;
+    const categoryInput = document.getElementById('category').value;
+    const priorityInput = document.getElementById('priority').value;
+    const deadlineInput = document.getElementById('deadline').value;
+
+    const taskList = document.getElementById('task-list');
+
+    const li = document.createElement('li');
+
+    const taskText = document.createElement('span');
+    taskText.textContent = `${taskInput} [${categoryInput}] [${priorityInput}] [${deadlineInput}]`;
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.className = 'delete';
+    deleteBtn.onclick = function() {
+        taskList.removeChild(li);
+    };
+
+    li.appendChild(taskText);
+    li.appendChild(deleteBtn);
+
+    taskList.appendChild(li);
+
+    document.getElementById('task-form').reset();
+});
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form id="task-form">
+            <input type="text" id="task" placeholder="Add a new task" required>
+            <select id="category">
+                <option value="Planning and Research">Planning and Research</option>
+                <option value="Design">Design</option>
+                <option value="Development">Development</option>
+                <option value="Content Creation">Content Creation</option>
+                <option value="Testing and Quality Assurance">Testing and Quality Assurance</option>
+                <option value="Deployment">Deployment</option>
+                <option value="Maintenance and Updates">Maintenance and Updates</option>
+                <option value="Marketing and SEO">Marketing and SEO</option>
+            </select>
+            <select id="priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
+            <input type="date" id="deadline" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <ul id="task-list"></ul>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
